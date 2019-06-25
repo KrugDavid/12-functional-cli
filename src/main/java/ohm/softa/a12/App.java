@@ -36,6 +36,13 @@ public abstract class App {
              * use `skip` and `limit` to retrieve the required elements
              * use `map` to unwrap the ResponseWrapper value
              * and print the jokes to the STDOUT */
+            jokesSource
+				.filter(o->o!=null)
+				.skip(skipCount)
+				.limit(jokeCount)
+				.map(ResponseWrapper::getValue)
+				.map(JokeDto::getJoke)
+				.forEach(System.out::println);
 
             System.out.println("If you want to quit press [Q] otherwise press [C] to continue.");
             var input = inputScanner.next();
